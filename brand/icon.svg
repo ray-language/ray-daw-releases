@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <title>RayDaw</title>
+  <rect width="256" height="256" rx="58" fill="#07080c"/>
+  <rect x="40" y="56" width="104" height="30" rx="8" fill="#4c9aff"/>
+  <rect x="152" y="56" width="64" height="30" rx="8" fill="#4c9aff"/>
+  <rect x="64" y="98" width="152" height="30" rx="8" fill="#36b37e"/>
+  <rect x="40" y="140" width="64" height="30" rx="8" fill="#ffab00"/>
+  <rect x="112" y="140" width="104" height="30" rx="8" fill="#ffab00"/>
+  <rect x="88" y="182" width="128" height="30" rx="8" fill="#ff5630"/>
+  <line x1="132" y1="44" x2="132" y2="224" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+  <path d="M120 30 H144 L132 44 Z" fill="#ffffff" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"/>
+</svg>
