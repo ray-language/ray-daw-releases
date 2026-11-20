@@ -84,6 +84,10 @@ The first published version.
   full lap is kept and every lap stays in the file.
 - Record offset, set by hand or measured with the metronome; monitoring through the channel.
 
+<p align="center">
+  <img src="screenshots/recording.png" alt="A take recording on an armed audio track while the demo song plays: the red Recording clip draws its waveform, and the inspector shows the track's input, arm, monitor and input gain" width="900">
+</p>
+
 **Instruments and MIDI**
 - Subtractive synthesizer: two PolyBLEP oscillators, state-variable filter with its own envelope,
   16 voices.
