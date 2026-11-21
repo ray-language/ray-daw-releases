@@ -52,6 +52,25 @@ app and the zip's size and SHA-256 match the manifest. From a terminal:
 
 ## Versions
 
+### 0.3.0 · 21 November 2026
+
+**Projects**
+- *File › Open Recent* is a submenu, with *Clear Menu*; the recent projects are also in the
+  command palette.
+- Opened and saved projects appear among macOS's recent documents: the Dock menu of RayDaw,
+  *Apple menu › Recent Items* and Finder.
+- A `.raydaw` project opens from Finder (*Open With*) or dropped on the Dock icon.
+
+**Recording**
+- Built with raylang 1.27.111, which corrects how a take is aligned with what plays. If you
+  measured a Record Offset with 0.2.0, measure it again: *Audio › Recording Settings…*.
+- The live waveform of a take no longer runs ahead of the playhead when the input gain is
+  changed or a track is armed while recording.
+- Input gain and volume show one decimal.
+
+**App**
+- The icon has its simplified version at the small sizes (Finder lists, menus).
+
 ### 0.2.0 · 20 November 2026
 
 The first published version.
