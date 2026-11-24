@@ -50,7 +50,78 @@ app and the zip's size and SHA-256 match the manifest. From a terminal:
 /Applications/RayDaw.app/Contents/MacOS/RayDaw --self-update
 ```
 
+## Plug-ins
+
+RayDaw plays the Audio Unit and VST3 plug-ins installed on the Mac, as effects (*+ Insert*) and as
+instruments (an instrument track's instrument selector). It ships none of its own; any plug-in
+built for Apple silicon (`arm64` or universal) will do. It looks for them in:
+
+| Format | For you (no password) | For every user |
+|---|---|---|
+| Audio Unit (`.component`) | `~/Library/Audio/Plug-Ins/Components` | `/Library/Audio/Plug-Ins/Components` |
+| VST3 (`.vst3`) | `~/Library/Audio/Plug-Ins/VST3` | `/Library/Audio/Plug-Ins/VST3` |
+
+**Installing one.** Use the plug-in's installer, or, when it offers a zip or disk image, copy the
+`.component` or `.vst3` bundle into the folder for you (create `~/Library/Audio/Plug-Ins/VST3` if
+it is missing). Restart RayDaw: it reads the list once per session. Third-party Audio Units run in
+a process of their own, so one that crashes does not take RayDaw down; VST3 plug-ins run inside
+RayDaw.
+
+**Checking it.** This loads every plug-in (or those whose name, vendor or id contains the filter)
+the way RayDaw does, runs two seconds of signal through it and prints one line each: `ok`, or what
+went wrong.
+
+```sh
+/Applications/RayDaw.app/Contents/MacOS/RayDaw --check-plugins surge
+```
+
+**Removing one.** Delete its bundle from the folder it was copied to (only that bundle: other apps
+keep theirs there too), or run the uninstaller it came with, and restart RayDaw. A project that
+used it still opens: its slot passes the signal through and says the plug-in is missing, and its
+settings are kept for when it is back.
+
+**Free plug-ins to try.** RayDaw's plug-in support was tested with these; each one's release has a
+macOS download whose bundles can be copied as above.
+
+| Plug-in | Kind | Formats | License |
+|---|---|---|---|
+| [Surge XT](https://github.com/surge-synthesizer/releases-xt/releases) and Surge XT Effects | synthesizer; effects | AU, VST3 | GPL-3.0 |
+| [Dexed](https://github.com/asb2m10/dexed/releases) | FM synthesizer | AU, VST3 | GPL-3.0 |
+| [Airwindows Consolidated](https://github.com/baconpaul/airwin2rack/releases/tag/DAWPlugin) | hundreds of effects in one | AU, VST3 | MIT |
+| [CHOWTapeModel](https://github.com/jatinchowdhury18/AnalogTapeModel/releases) | tape saturation | AU, VST3 | GPL-3.0 |
+| [Dragonfly Reverb](https://github.com/michaelwillis/dragonfly-reverb/releases) (Hall, Room, Plate, Early Reflections) | reverbs | VST3 | GPL-3.0 |
+
+Loading several Dragonfly reverbs prints `Class DGL_Pugl… is implemented in both` in the terminal:
+they share code, and it is harmless. **Dragonfly Early Reflections hangs RayDaw when its editor is opened**
+(a bug of the plug-in: Steinberg's own example host hangs the same way, and the other three
+open fine; [its issue](https://github.com/michaelwillis/dragonfly-reverb/issues/169)); as an
+insert it works, and its parameters can be automated from *+ Automation*. If it hangs RayDaw, force
+RayDaw to quit (⌥⌘⎋): it kept a recovery copy of the unsaved changes, and it asks before opening
+that editor again.
+
 ## Versions
+
+### 0.4.0 · 23 November 2026
+
+**Plug-ins**
+- Audio Unit (v2 and v3) and VST3 effects as inserts on every channel and on the master, marked
+  *AU* or *VST3* in the list; *Open Editor* opens the plug-in's own window.
+- Audio Unit and VST3 instruments on instrument tracks, played sample-accurately by the parts and
+  the on-screen keyboard; stopping, locating or cycling releases their notes, and their tails ring
+  out, in the export too.
+- A plug-in's settings are saved with the project, with every autosave and undo step. One that is
+  not installed passes the signal through and says so.
+- Delay compensation: a plug-in that delays its signal no longer puts the mix out of step, and
+  what you hear is where the playhead is. The channel editor shows each plug-in's latency.
+- Automation of plug-in parameters, drawn with the plug-in's own values and units; a track in
+  **W** writes what you move in the plug-in's window.
+- A plug-in that hangs RayDaw: after 5 s without an answer from the window, RayDaw writes the
+  recovery copy of the unsaved changes; a plug-in whose editor froze it is remembered, and asking
+  for that editor again asks first; the plug-ins are listed in a separate process, so one that
+  crashes or hangs there is left out, not RayDaw.
+- *+ Automation* and *+ Insert* have a search field that filters the list as you type.
+- `--check-plugins [filter]` tests the installed plug-ins without opening a window.
+- Built with raylang 1.27.111.
 
 ### 0.3.0 · 21 November 2026
 
