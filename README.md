@@ -101,6 +101,12 @@ that editor again.
 
 ## Versions
 
+### 0.4.1 · 23 November 2026
+
+- The instrument selector has a search field too, and groups the instruments into built-in,
+  Audio Units and VST3.
+- *+ Insert* in a mixer strip is one line high again.
+
 ### 0.4.0 · 23 November 2026
 
 **Plug-ins**
