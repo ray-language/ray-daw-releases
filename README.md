@@ -29,9 +29,11 @@ curl -fsSL https://github.com/ray-language/ray-daw-releases/releases/latest/down
 The script reads the release manifest, downloads the zip, checks its SHA-256 against the manifest
 before unpacking anything, and puts `RayDaw.app` in `/Applications` (or in `~/Applications` when
 `/Applications` is not writable). `RAYDAW_VERSION=0.2.0` installs that version instead of the
-latest; `RAYDAW_DIR=<folder>` installs it somewhere else. To install by hand, download the zip from
-the [latest release](https://github.com/ray-language/ray-daw-releases/releases/latest), unzip it
-and drag `RayDaw.app` to Applications.
+latest; `RAYDAW_DIR=<folder>` installs it somewhere else.
+
+Without a terminal: download
+[RayDaw.dmg](https://github.com/ray-language/ray-daw-releases/releases/latest/download/RayDaw.dmg),
+open it and drag RayDaw to Applications. The disk image is signed and notarized too.
 
 The app is signed with a Developer ID and notarized by Apple, so it opens without Gatekeeper
 asking. The first time a track is armed, macOS asks for permission to use the microphone.
@@ -100,6 +102,10 @@ RayDaw to quit (⌥⌘⎋): it kept a recovery copy of the unsaved changes, and 
 that editor again.
 
 ## Versions
+
+### 0.4.2 · 24 November 2026
+
+- Each release carries a disk image, `RayDaw.dmg`: open it and drag RayDaw to Applications.
 
 ### 0.4.1 · 23 November 2026
 
@@ -241,4 +247,6 @@ The first published version.
 - `RayDaw-<version>-macos-aarch64.zip`, the signed and notarized app;
 - `update.json`, the manifest naming the version and its zip, with the zip's size and SHA-256;
 - `update.json.sig`, the manifest's Ed25519 signature;
-- `install.sh`, the installer above.
+- `install.sh`, the installer above;
+- `RayDaw-<version>-macos-aarch64.dmg`, the disk image with the app (signed, notarized and
+  stapled), and `RayDaw.dmg`, the same file under a name that does not change.
